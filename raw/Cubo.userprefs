@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/SingleCube.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/CubeController.cs">
     <Files>
-      <File FileName="Assets/scripts/CameraController.cs" Line="13" Column="19" />
-      <File FileName="Assets/scripts/CubeController.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/SingleCube.cs" Line="17" Column="31" />
+      <File FileName="Assets/scripts/CubeController.cs" Line="41" Column="31" />
+      <File FileName="Assets/scripts/CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/SingleCube.cs" Line="8" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
