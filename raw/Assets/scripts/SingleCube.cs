@@ -4,12 +4,13 @@ using System.Collections;
 public class SingleCube : MonoBehaviour {
 	private bool isClicked;
 	private Renderer render;
+	private Vector3 initialPos;
 	public Material originalMat;
 	public Material newMat;
-
 	// Use this for initialization
 	void Start () {
 		isClicked = false;
+		initialPos = transform.position;
 		render = GetComponent<Renderer> (); 
 	}
 	
@@ -17,6 +18,7 @@ public class SingleCube : MonoBehaviour {
 	void Update () {
 		if (isClicked && Input.GetKeyDown("space")) {
 			gameObject.SetActive(false);
+			GameObject.Find("Cubes").SendMessage("recvMessage",initialPos);
 		}
 	}
 

@@ -48,6 +48,7 @@
      <Compile Include="Assets\scripts\CameraController.cs" />
      <Compile Include="Assets\scripts\CubeController.cs" />
      <Compile Include="Assets\scripts\SingleCube.cs" />
+     <None Include="Assets\Resources\win1.txt" />
      <None Include="Assets\Resources\level1.txt" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>

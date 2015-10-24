@@ -10,6 +10,7 @@ public class CubeController : MonoBehaviour {
 	private Quaternion initial_rotation;	//record the initial rotation
 	private ArrayList rawInput = new ArrayList();
 	private int[,,] shape;
+	private int[,,] win;
 	private GameObject cubes;
 
 	public void resetCubes(){
@@ -25,7 +26,8 @@ public class CubeController : MonoBehaviour {
 			return tempi;
 	}
 
-	void genShape(string target){
+	//if read "level.txt", flag = 0; else flag = 1;
+	void readInput(string target,int flag){
 		TextAsset level = (TextAsset)Resources.Load (target);
 		string temp = level.text;
 		int h = 0;
@@ -33,6 +35,7 @@ public class CubeController : MonoBehaviour {
 		int l = 0;
 		string[] first = temp.Split ('\n');			//fill the rawInput
 		h = first.Length;
+		rawInput.Clear();
 		foreach (string x in first) {
 			string[] second = x.Split(',');
 			w = second.Length;
@@ -46,20 +49,33 @@ public class CubeController : MonoBehaviour {
 			}
 		}
 		int count = 0;
-		shape = new int[h, w, l];
+		if (flag == 0) {
+			shape = new int[h, w, l];
+		} else {
+			win = new int[h, w, l];
+		}
 		for (int i = 0; i < h; i++) {
-			for(int j = 0; j < w; j++){
-				for(int k = 0; k < l; k++){
-					shape[i,j,k] = (int)rawInput[count++];
+			for (int j = 0; j < w; j++) {
+				for (int k = 0; k < l; k++) {
+					if(flag==0){
+						shape[i, j, k] = (int)rawInput[count++];
+					}
+					else{
+						win[i, j, k] = (int)rawInput[count++];
+					}
 				}
 			}
 		}
+	}
 
+	void recvMessage(Vector3 x){
+		Debug.Log (x);
 	}
 
 	void Start () {
 		initial_rotation = transform.rotation;
-		genShape ("level1");
+		readInput ("level1",0);
+		readInput ("win1",1);
 
 		int l = shape.GetLength(2);    // 5
 		int w = shape.GetLength(1);    // 3
@@ -84,7 +100,6 @@ public class CubeController : MonoBehaviour {
 				}
 			}
 		}
-
 	}
 
 	void Update () {
