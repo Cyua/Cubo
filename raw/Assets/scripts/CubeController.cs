@@ -9,9 +9,14 @@ public class CubeController : MonoBehaviour {
 	private float rotate_horizontal;		//rotate cubes
 	private Quaternion initial_rotation;	//record the initial rotation
 	private ArrayList rawInput = new ArrayList();
-	private int[,,] shape;
-	private int[,,] win;
-	private GameObject cubes;
+	private int[,,] shape;					//original shape of cubes
+	private int[,,] win;					//final shape of cubes, which win the game
+	private int[,,] current;				//current axis
+	private GameObject cubes;				//cube model
+	private int l=0,w=0,h=0;				//length, width, height of the shape
+	private int mx=0,my=0,mz=0;				//center vector3 of the shape
+	private float px=0,py=0,pz=0;			//center vector3 of the Cubes
+	private bool isWin = false;				//judge if the game is over
 
 	public void resetCubes(){
 		transform.rotation = initial_rotation;
@@ -26,13 +31,11 @@ public class CubeController : MonoBehaviour {
 			return tempi;
 	}
 
+
 	//if read "level.txt", flag = 0; else flag = 1;
 	void readInput(string target,int flag){
 		TextAsset level = (TextAsset)Resources.Load (target);
 		string temp = level.text;
-		int h = 0;
-		int w = 0;
-		int l = 0;
 		string[] first = temp.Split ('\n');			//fill the rawInput
 		h = first.Length;
 		rawInput.Clear();
@@ -68,26 +71,42 @@ public class CubeController : MonoBehaviour {
 		}
 	}
 
-	void recvMessage(Vector3 x){
-		Debug.Log (x);
+
+	void recvMessage(Vector3 o){			//receive message from the children
+		int x = (int)o.x;
+		int y = (int)o.y;
+		int z = (int)o.z;
+		int k = (int)(x+mx-px);
+		int i = (int)(h-my+py-y);
+		int j = (int)(z+mz-pz);
+		current [i, j, k] = 0;
+		if (compareArrays ()) {
+			isWin = true;
+		}
+	}
+
+
+	bool compareArrays(){					//compare current and win, judge if the game is over
+		for (int i = 0; i < h; i++)
+			for (int j = 0; j < w; j++)
+				for (int k = 0; k < l; k++)
+					if(win[i, j, k] != current[i, j, k])
+						return false;
+		return true;
 	}
 
 	void Start () {
 		initial_rotation = transform.rotation;
 		readInput ("level1",0);
 		readInput ("win1",1);
+		current = shape;
+		mx = returnMiddle (l)-1;  //calculate the middle point
+		my = returnMiddle (h);
+		mz = returnMiddle (w)-1;
 
-		int l = shape.GetLength(2);    // 5
-		int w = shape.GetLength(1);    // 3
-		int h = shape.GetLength(0);    // 5
-
-		int mx = returnMiddle (l)-1;  //calculate the middle point
-		int my = returnMiddle (h);
-		int mz = returnMiddle (w)-1;
-
-		float px = transform.position.x;  //parent's position
-		float py = transform.position.y;
-		float pz = transform.position.z;
+		px = transform.position.x;  //parent's position
+		py = transform.position.y;
+		pz = transform.position.z;
 
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < w; j++) {

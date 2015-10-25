@@ -10,6 +10,7 @@ public class SingleCube : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		isClicked = false;
+		Vector3 ini= new Vector3 ();
 		initialPos = transform.position;
 		render = GetComponent<Renderer> (); 
 	}

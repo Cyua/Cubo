@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/CubeController.cs">
     <Files>
-      <File FileName="Assets/scripts/CubeController.cs" Line="78" Column="24" />
-      <File FileName="Assets/scripts/SingleCube.cs" Line="17" Column="36" />
+      <File FileName="Assets/scripts/SingleCube.cs" Line="13" Column="14" />
+      <File FileName="Assets/scripts/CubeController.cs" Line="21" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
