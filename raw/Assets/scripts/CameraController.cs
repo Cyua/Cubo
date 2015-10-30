@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetAxis ("Mouse ScrollWheel") != 0) {  //scroll mouse wheel
-			transform.Translate (new Vector3 (0, 0, Input.GetAxis ("Mouse ScrollWheel") * Time.deltaTime * view_value));
+			transform.Translate (new Vector3 (0, 0, 10 * Input.GetAxis ("Mouse ScrollWheel") * Time.deltaTime * view_value));
 		}
 		if (Input.GetMouseButton (0)) {   //press left mouse button
 			transform.Translate(Vector3.left*Input.GetAxis("Mouse X")*move_speed);
