@@ -122,9 +122,12 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void Update () {
-		rotate_vertical = Input.GetAxis ("Vertical");
-		rotate_horizontal = Input.GetAxis ("Horizontal");
-		transform.RotateAround(transform.position,Vector3.right,Time.deltaTime*rotate_speed*rotate_vertical);
-		transform.RotateAround(transform.position,Vector3.down,Time.deltaTime*rotate_speed*rotate_horizontal);
+		// Rotate the cube as mouse drags
+		if (Input.GetMouseButton(0) && !Input.GetKeyDown("space")) {
+			rotate_vertical = Input.GetAxis ("Mouse Y");
+			rotate_horizontal = Input.GetAxis ("Mouse X");
+			transform.RotateAround(transform.position,Vector3.right,Time.deltaTime*rotate_speed*rotate_vertical);
+			transform.RotateAround(transform.position,Vector3.down,Time.deltaTime*rotate_speed*rotate_horizontal);
+		}
 	}
 }
