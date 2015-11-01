@@ -4,6 +4,7 @@ using System.Collections;
 public class CubeController : MonoBehaviour {
 	public GameObject instantiate;
 	public float rotate_speed;
+	public Texture2D[,] hintTex = new Texture2D[10, 3];
 
 	private float rotate_vertical;			//rotate cubes
 	private float rotate_horizontal;		//rotate cubes
@@ -11,6 +12,7 @@ public class CubeController : MonoBehaviour {
 	private ArrayList rawInput = new ArrayList();
 	private int[,,] shape;					//original shape of cubes
 	private int[,,] win;					//final shape of cubes, which win the game
+	private int[,] hintHW, hintHL, hintWL;	//hints
 	private int[,,] current;				//current axis
 	private GameObject cubes;				//cube model
 	private int l=0,w=0,h=0;				//length, width, height of the shape
@@ -31,43 +33,94 @@ public class CubeController : MonoBehaviour {
 			return tempi;
 	}
 
+	Texture2D LoadTex(int number, int type) {
+		Texture2D tex = null;
+		string filename;
+		string append;
+		if (number == 0 && type == 1)
+			filename = Application.dataPath + "/textures/null.png";
+		else {
+			if (type == 0)
+				append = ".png";
+			else if (type == 1)
+				append = "_c.png";
+			else
+				append = "_s.png";
+			filename = Application.dataPath + "/textures/t" + number + append;
+		}
+		if (System.IO.File.Exists (filename)) {
+			byte[] bytes = System.IO.File.ReadAllBytes (filename);
+			tex = new Texture2D (256, 256);
+			tex.LoadImage (bytes);
+		}
+		else
+			Debug.Log (filename);
+		return tex;
+	}
 
-	//if read "level.txt", flag = 0; else flag = 1;
-	void readInput(string target,int flag){
+	Texture2D TransformHint(int number) {
+		if (number == -1)
+			return hintTex [0, 1];
+		else if (number < 10)
+			return hintTex [number, 0];
+		else if (number < 100)
+			return hintTex [number / 10, 1];
+		else
+			return hintTex [number / 100, 2];
+	}
+
+	//read "level.txt"
+	void readInput(string target){
 		TextAsset level = (TextAsset)Resources.Load (target);
-		string temp = level.text;
-		string[] first = temp.Split ('\n');			//fill the rawInput
-		h = first.Length;
-		rawInput.Clear();
-		foreach (string x in first) {
-			string[] second = x.Split(',');
-			w = second.Length;
-			foreach(string y in second){
-				string[] third = y.Split(' ');
-				l = third.Length;
-				foreach(string z in third){
-					int node = int.Parse(z);
-					rawInput.Add(node);
-				}
-			}
-		}
-		int count = 0;
-		if (flag == 0) {
-			shape = new int[h, w, l];
-		} else {
-			win = new int[h, w, l];
-		}
+		string[] lines = level.text.Split('\n');			//fill the rawInput
+
+		// First line: Height, width, length
+		string[] hwl = lines[0].Split(',');
+		h = int.Parse(hwl[0]);
+		w = int.Parse(hwl[1]);
+		l = int.Parse(hwl[2]);
+
+		shape = new int[h, w, l];
+		win = new int[h, w, l];
+		hintHW = new int[h, w];
+		hintHL = new int[h, l];
+		hintWL = new int[w, l];
+
+		// Read shape
 		for (int i = 0; i < h; i++) {
+			string line = lines[i+1];
+			string[] second = line.Split(',');
 			for (int j = 0; j < w; j++) {
+				string[] third = second[j].Split(' ');
 				for (int k = 0; k < l; k++) {
-					if(flag==0){
-						shape[i, j, k] = (int)rawInput[count++];
-					}
-					else{
-						win[i, j, k] = (int)rawInput[count++];
-					}
+					win[i, j, k] = int.Parse(third[k]);
+					shape[i, j, k] = 1;
 				}
 			}
+		}
+
+		// Read hint
+		// height-width
+		string[] hw = lines[h+1].Split(',');
+		for (int i = 0; i < h; i++) {
+			string[] second = hw [i].Split (' ');
+			for (int j = 0; j < w; j++)
+				hintHW [i, j] = int.Parse (second [j]);
+		}
+		// height-length
+		string[] hl = lines[h+2].Split(',');
+		for (int i = 0; i < h; i++) {
+			string[] second = hl [i].Split (' ');
+			for (int j = 0; j < l; j++)
+				hintHL [i, j] = int.Parse (second [j]);
+		}
+
+		// width-length
+		string[] wl = lines[h+3].Split(',');
+		for (int i = 0; i < w; i++) {
+			string[] second = wl [i].Split (' ');
+			for (int j = 0; j < l; j++)
+				hintWL [i, j] = int.Parse (second [j]);
 		}
 	}
 
@@ -82,6 +135,7 @@ public class CubeController : MonoBehaviour {
 		current [i, j, k] = 0;
 		if (compareArrays ()) {
 			isWin = true;
+			Debug.Log("win");
 		}
 	}
 
@@ -96,9 +150,13 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void Start () {
+		// load textures;
+		for (int i = 0; i <= 9; i++)
+			for (int j = 0; j <= 2; j++)
+				hintTex[i, j] = LoadTex(i, j);
+
 		initial_rotation = transform.rotation;
-		readInput ("level1",0);
-		readInput ("win1",1);
+		readInput ("level1");
 		current = shape;
 		mx = returnMiddle (l)-1;  //calculate the middle point
 		my = returnMiddle (h);
@@ -115,6 +173,9 @@ public class CubeController : MonoBehaviour {
 						cubes = Instantiate (instantiate, transform.position, transform.rotation) as GameObject;
 						cubes.transform.SetParent(this.transform,true);
 						cubes.transform.position = new Vector3(k-mx+px, h-i-my+py, j-mz+pz);
+						cubes.GetComponent<SingleCube>().SetHint(TransformHint(hintHL[i, k]), 
+						                                         TransformHint(hintHW[i, j]),
+						                                         TransformHint(hintWL[j, k]));
 					}
 				}
 			}
