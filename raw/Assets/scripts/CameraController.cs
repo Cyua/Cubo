@@ -21,10 +21,12 @@ public class CameraController : MonoBehaviour {
 		if (Input.GetAxis ("Mouse ScrollWheel") != 0) {  //scroll mouse wheel
 			transform.Translate (new Vector3 (0, 0, 10 * Input.GetAxis ("Mouse ScrollWheel") * Time.deltaTime * view_value));
 		}
+		/*
 		if (Input.GetMouseButton (0)) {   //press left mouse button
 			transform.Translate(Vector3.left*Input.GetAxis("Mouse X")*move_speed);
 			transform.Translate(Vector3.up*Input.GetAxis("Mouse Y")*-move_speed);
 		}
+		*/
 		//rotate_horizontal = Input.GetAxis ("Horizontal");
 		//rotate_vertical = Input.GetAxis ("Vertical");
 
