@@ -4,6 +4,9 @@ using System.Collections;
 public class SingleCube : MonoBehaviour {
 	private bool marked = false;
 	private bool knocked = false;
+	private bool beJudged = false;
+	private bool locked = false;
+
 	private Renderer[] render;
 	private Vector3 initialPos;
 
@@ -16,6 +19,7 @@ public class SingleCube : MonoBehaviour {
 	
 	public Material originalMat;
 	public Material newMat;
+	public Material mistakeMat;
 
 	// Use this for initialization
 	void Start () {
@@ -55,24 +59,41 @@ public class SingleCube : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		if (Input.GetKey ("x") && !knocked) {
-			marked = !marked;
-			if (marked)
-				foreach (Renderer r in render)
-					r.material = newMat;
-			else
-				foreach (Renderer r in render)
-					r.material = originalMat;
-			ResetHint();
-		} else if (Input.GetKey ("space") && !marked) {
-			knocked = true;
-			gameObject.SetActive (false);
-			GameObject.Find ("Cubes").SendMessage ("recvMessage", initialPos);
-		} else if (Input.GetKey ("space") && marked) {
-			enlarge = 1;
+		if (!locked) {
+			if (Input.GetKey ("x") && !knocked) {
+				marked = !marked;
+				if (marked)
+					foreach (Renderer r in render)
+						r.material = newMat;
+				else
+					foreach (Renderer r in render)
+						r.material = originalMat;
+				ResetHint ();
+			} else if (Input.GetKey ("space") && !marked) {
+				knocked = true;
+//			gameObject.SetActive (false);
+				beJudged = true;
+				GameObject.Find ("Cubes").SendMessage ("recvMessage", initialPos);
+			} else if (Input.GetKey ("space") && marked) {
+				enlarge = 1;
+			}
 		}
 	}
 
+	void waitJudge(bool isLegal){
+		if (beJudged) {
+			if(isLegal){
+				gameObject.SetActive(false);
+			} else {
+				locked = true;
+				foreach (Renderer r in render)
+					r.material = mistakeMat;
+				enlarge=1;
+			}
+			beJudged = false;
+		}
+	}
+	
 	void UpdateScale() {
 		if (enlarge == 0)
 			return;

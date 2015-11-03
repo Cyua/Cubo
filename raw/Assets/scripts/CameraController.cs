@@ -5,8 +5,6 @@ public class CameraController : MonoBehaviour {
 	public float view_value;
 	public float move_speed;
 
-//	private float rotate_horizontal;
-//	private float rotate_vertical;
 	private Vector3 initial_position;
 
 	public void resetCamera(){
@@ -19,19 +17,15 @@ public class CameraController : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetAxis ("Mouse ScrollWheel") != 0) {  //scroll mouse wheel
-			transform.Translate (new Vector3 (0, 0, 10 * Input.GetAxis ("Mouse ScrollWheel") * Time.deltaTime * view_value));
+			float zAxis = 10 * Input.GetAxis ("Mouse ScrollWheel") * Time.deltaTime * view_value;
+			if((zAxis+transform.position.z)>=-15 && (zAxis+transform.position.z) <= -5)			//limit the camera
+				transform.Translate (new Vector3 (0, 0, zAxis));
+			else if((zAxis+transform.position.z)<-15){
+				transform.position = new Vector3(initial_position.x,initial_position.y,-15);
+			}
+			else{
+				transform.position = new Vector3(initial_position.x,initial_position.y,-5);
+			}
 		}
-		/*
-		if (Input.GetMouseButton (0)) {   //press left mouse button
-			transform.Translate(Vector3.left*Input.GetAxis("Mouse X")*move_speed);
-			transform.Translate(Vector3.up*Input.GetAxis("Mouse Y")*-move_speed);
-		}
-		*/
-		//rotate_horizontal = Input.GetAxis ("Horizontal");
-		//rotate_vertical = Input.GetAxis ("Vertical");
-
-		//transform.RotateAround(Vector3.zero,Vector3.up,Time.deltaTime*rotate_speed*rotate_horizontal);
-			
-		//transform.RotateAround(Vector3.zero,Vector3.right,Time.deltaTime*rotate_speed*rotate_vertical);
 	}
 }

@@ -1,23 +1,9 @@
 ﻿<Properties>
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/SingleCube.cs">
-=======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\CameraController.cs">
-    <Files>
-      <File FileName="Assets\scripts\SingleCube.cs" Line="13" Column="11" />
-      <File FileName="Assets\scripts\CubeController.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\CameraController.cs" Line="16" Column="16" />
-=======
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/CubeController.cs">
->>>>>>> ca8167ab8582729184eeeb4b545a6da8947d6b1e
     <Files>
-      <File FileName="Assets/scripts/CubeController.cs" Line="41" Column="48" />
-      <File FileName="Assets/scripts/SingleCube.cs" Line="64" Column="33" />
-      <File FileName="Assets/Resources/level1.txt" Line="1" Column="1" />
->>>>>>> 2c965bb3867b5aaa2f31be6dc3ba1f41987039a9
+      <File FileName="Assets/scripts/CubeController.cs" Line="182" Column="38" />
+      <File FileName="Assets/scripts/SingleCube.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

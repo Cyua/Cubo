@@ -18,7 +18,10 @@ public class CubeController : MonoBehaviour {
 	private int l=0,w=0,h=0;				//length, width, height of the shape
 	private int mx=0,my=0,mz=0;				//center vector3 of the shape
 	private float px=0,py=0,pz=0;			//center vector3 of the Cubes
-	private bool isWin = false;				//judge if the game is over
+
+	private bool isWin = false;				//judge if the game is win
+	private bool isLost = false;			//judge if the game is lost
+	private int cntMistake = 0;				//count the mistakes, if larger than 3, game lost
 
 	public void resetCubes(){
 		transform.rotation = initial_rotation;
@@ -132,10 +135,28 @@ public class CubeController : MonoBehaviour {
 		int k = (int)(x+mx-px);
 		int i = (int)(h-my+py-y);
 		int j = (int)(z+mz-pz);
-		current [i, j, k] = 0;
-		if (compareArrays ()) {
-			isWin = true;
-			Debug.Log("win");
+
+		if (win [i, j, k]==1) {			//the cube is pressed false
+			GameObject [] childCube = GameObject.FindGameObjectsWithTag("cubeTag");
+			foreach(GameObject itemCube in childCube){
+				itemCube.SendMessage("waitJudge",false);
+			}
+			cntMistake++;
+			if(cntMistake>=3){			//just three opportunity!
+				isLost = true;			//lost the game!
+				isWin = false;
+				Debug.Log(false);	
+			}
+		} else {
+			GameObject [] childCube = GameObject.FindGameObjectsWithTag("cubeTag");
+			foreach(GameObject itemCube in childCube){
+				itemCube.SendMessage("waitJudge",true);
+			}
+			current [i, j, k] = 0;
+			if (compareArrays ()) {
+				isWin = true;
+				Debug.Log ("win");
+			}
 		}
 	}
 
