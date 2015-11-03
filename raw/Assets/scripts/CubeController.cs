@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CubeController : MonoBehaviour {
 	public GameObject instantiate;
 	public float rotate_speed;
 	public Texture2D[,] hintTex = new Texture2D[10, 3];
+	public Text remAttemptText;
 
 	private float rotate_vertical;			//rotate cubes
 	private float rotate_horizontal;		//rotate cubes
@@ -21,7 +23,9 @@ public class CubeController : MonoBehaviour {
 
 	private bool isWin = false;				//judge if the game is win
 	private bool isLost = false;			//judge if the game is lost
-	private int cntMistake = 0;				//count the mistakes, if larger than 3, game lost
+	private int remAttempt = 3;				//count the mistakes, if larger than 3, game lost
+	private string oriAttemptText;
+	
 
 	public void resetCubes(){
 		transform.rotation = initial_rotation;
@@ -141,8 +145,9 @@ public class CubeController : MonoBehaviour {
 			foreach(GameObject itemCube in childCube){
 				itemCube.SendMessage("waitJudge",false);
 			}
-			cntMistake++;
-			if(cntMistake>=3){			//just three opportunity!
+			remAttempt--;
+			remAttemptText.text = oriAttemptText + remAttempt;	//update the Text
+			if(remAttempt<=0){			//just three opportunity!
 				isLost = true;			//lost the game!
 				isWin = false;
 				Debug.Log(false);	
@@ -171,6 +176,10 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void Start () {
+		//initial Text Area
+		oriAttemptText = remAttemptText.text;
+		remAttemptText.text = oriAttemptText + remAttempt;
+
 		// load textures;
 		for (int i = 0; i <= 9; i++)
 			for (int j = 0; j <= 2; j++)
@@ -205,6 +214,8 @@ public class CubeController : MonoBehaviour {
 
 	void Update () {
 		// Rotate the cube as mouse drags
+
+
 		if (Input.GetMouseButton(0) && !Input.GetKeyDown("space")) {
 			rotate_vertical = Input.GetAxis ("Mouse Y");
 			rotate_horizontal = Input.GetAxis ("Mouse X");
