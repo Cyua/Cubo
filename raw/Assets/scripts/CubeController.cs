@@ -38,23 +38,17 @@ public class CubeController : MonoBehaviour {
 		string filename;
 		string append;
 		if (number == 0 && type == 1)
-			filename = Application.dataPath + "/textures/null.png";
+			tex = (Texture2D)Resources.Load ("Textures/null");
 		else {
 			if (type == 0)
-				append = ".png";
+				append = "";
 			else if (type == 1)
-				append = "_c.png";
+				append = "_c";
 			else
-				append = "_s.png";
-			filename = Application.dataPath + "/textures/t" + number + append;
+				append = "_s";
+			filename = "Textures/t" + number + append;
+			tex = (Texture2D)Resources.Load (filename);
 		}
-		if (System.IO.File.Exists (filename)) {
-			byte[] bytes = System.IO.File.ReadAllBytes (filename);
-			tex = new Texture2D (256, 256);
-			tex.LoadImage (bytes);
-		}
-		else
-			Debug.Log (filename);
 		return tex;
 	}
 
