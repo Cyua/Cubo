@@ -93,7 +93,11 @@ public class SingleCube : MonoBehaviour {
 			beJudged = false;
 		}
 	}
-	
+
+	void lockCube(bool winOrLost){
+		locked = true;
+	}
+
 	void UpdateScale() {
 		if (enlarge == 0)
 			return;

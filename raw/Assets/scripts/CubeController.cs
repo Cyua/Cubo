@@ -27,6 +27,38 @@ public class CubeController : MonoBehaviour {
 	private string oriAttemptText;
 	
 
+	/*****************************************/
+	//display the windows when win or lost
+	public Rect windowRect1 = new Rect((float)Screen.width/2-100, 20, 200, 50);
+	public Rect windowRect2 = new Rect((float)Screen.width/2-100, 20, 200, 50);
+	void OnGUI() {
+		if(isLost)
+			windowRect1 = GUI.Window(0, windowRect1, DoMyWindow, "You lost");
+		if(isWin)
+			windowRect2 = GUI.Window(1, windowRect2, DoMyWindow, "You Win");
+	}
+	void DoMyWindow(int windowID) {
+		Debug.Log (Screen.width/2);
+		if (windowID == 0) {		//lost the game
+			if (GUI.Button (new Rect (20, 25, 70, 20), "Back")) {
+				Application.LoadLevel("selectLevel");
+				print ("Back");
+			}
+			if (GUI.Button (new Rect (110, 25, 70, 20), "Replay")) {
+				print ("Try again");
+			}
+		} else if (windowID == 1) {
+			if (GUI.Button (new Rect (20, 25, 70, 20), "Back")) {
+				Application.LoadLevel("selectLevel");
+				print ("Back");
+			}
+			if (GUI.Button (new Rect (110, 25, 70, 20), "Next")) {
+				print ("Next level");
+			}
+		}
+	}
+	/*****************************************/
+
 	public void resetCubes(){
 		transform.rotation = initial_rotation;
 	}
@@ -157,6 +189,13 @@ public class CubeController : MonoBehaviour {
 				Debug.Log ("win");
 			}
 		}
+
+		if (isWin || isLost) {				//lock the cubes
+			GameObject [] childCube = GameObject.FindGameObjectsWithTag("cubeTag");
+			foreach(GameObject itemCube in childCube){
+				itemCube.SendMessage("lockCube",true);
+			}
+		}
 	}
 
 
@@ -208,13 +247,11 @@ public class CubeController : MonoBehaviour {
 
 	void Update () {
 		// Rotate the cube as mouse drags
-
-
-		if (Input.GetMouseButton(0) && !Input.GetKeyDown("space")) {
+		if (Input.GetMouseButton (0) && !Input.GetKeyDown ("space")) {
 			rotate_vertical = Input.GetAxis ("Mouse Y");
 			rotate_horizontal = Input.GetAxis ("Mouse X");
-			transform.RotateAround(transform.position,Vector3.right,Time.deltaTime*rotate_speed*rotate_vertical);
-			transform.RotateAround(transform.position,Vector3.down,Time.deltaTime*rotate_speed*rotate_horizontal);
+			transform.RotateAround (transform.position, Vector3.right, Time.deltaTime * rotate_speed * rotate_vertical);
+			transform.RotateAround (transform.position, Vector3.down, Time.deltaTime * rotate_speed * rotate_horizontal);
 		}
 	}
 }
