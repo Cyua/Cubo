@@ -6,6 +6,11 @@ Obj/
 UnityGenerated/
 Library/
 Assets/AssetStoreTools*
+raw/Temp/
+raw/Obj/
+raw/UnityGenerated/
+raw/Library/
+raw/Assets/AssetStoreTools*
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
