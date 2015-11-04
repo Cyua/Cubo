@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CubeController : MonoBehaviour {
 	public GameObject instantiate;
 	public float rotate_speed;
 	public Texture2D[,] hintTex = new Texture2D[10, 3];
+	public Text remAttemptText;
 
 	private float rotate_vertical;			//rotate cubes
 	private float rotate_horizontal;		//rotate cubes
@@ -18,7 +20,12 @@ public class CubeController : MonoBehaviour {
 	private int l=0,w=0,h=0;				//length, width, height of the shape
 	private int mx=0,my=0,mz=0;				//center vector3 of the shape
 	private float px=0,py=0,pz=0;			//center vector3 of the Cubes
-	private bool isWin = false;				//judge if the game is over
+
+	private bool isWin = false;				//judge if the game is win
+	private bool isLost = false;			//judge if the game is lost
+	private int remAttempt = 3;				//count the mistakes, if larger than 3, game lost
+	private string oriAttemptText;
+	
 
 	public void resetCubes(){
 		transform.rotation = initial_rotation;
@@ -126,10 +133,29 @@ public class CubeController : MonoBehaviour {
 		int k = (int)(x+mx-px);
 		int i = (int)(h-my+py-y);
 		int j = (int)(z+mz-pz);
-		current [i, j, k] = 0;
-		if (compareArrays ()) {
-			isWin = true;
-			Debug.Log("win");
+
+		if (win [i, j, k]==1) {			//the cube is pressed false
+			GameObject [] childCube = GameObject.FindGameObjectsWithTag("cubeTag");
+			foreach(GameObject itemCube in childCube){
+				itemCube.SendMessage("waitJudge",false);
+			}
+			remAttempt--;
+			remAttemptText.text = oriAttemptText + remAttempt;	//update the Text
+			if(remAttempt<=0){			//just three opportunity!
+				isLost = true;			//lost the game!
+				isWin = false;
+				Debug.Log(false);	
+			}
+		} else {
+			GameObject [] childCube = GameObject.FindGameObjectsWithTag("cubeTag");
+			foreach(GameObject itemCube in childCube){
+				itemCube.SendMessage("waitJudge",true);
+			}
+			current [i, j, k] = 0;
+			if (compareArrays ()) {
+				isWin = true;
+				Debug.Log ("win");
+			}
 		}
 	}
 
@@ -144,6 +170,10 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void Start () {
+		//initial Text Area
+		oriAttemptText = remAttemptText.text;
+		remAttemptText.text = oriAttemptText + remAttempt;
+
 		// load textures;
 		for (int i = 0; i <= 9; i++)
 			for (int j = 0; j <= 2; j++)
@@ -178,6 +208,8 @@ public class CubeController : MonoBehaviour {
 
 	void Update () {
 		// Rotate the cube as mouse drags
+
+
 		if (Input.GetMouseButton(0) && !Input.GetKeyDown("space")) {
 			rotate_vertical = Input.GetAxis ("Mouse Y");
 			rotate_horizontal = Input.GetAxis ("Mouse X");
