@@ -1,3 +1,51 @@
 Base path: /Applications/Unity/Unity.app/Contents
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-2043269120
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-1980047360
 Cmd: getPlatforms
+Cmd: compileSnippet
+  api=0 type=0 insize=990 outsize=463 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=990 outsize=6 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=938 outsize=564 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=938 outsize=6 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=932 outsize=559 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=932 outsize=6 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=932 outsize=559 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=932 outsize=6 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=938 outsize=564 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=938 outsize=6 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=920 outsize=549 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=920 outsize=6 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=932 outsize=559 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=932 outsize=6 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=1274 outsize=8763 kw=SHADOWS_DEPTH GEOM_TYPE_BRANCH pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=1274 outsize=6 kw=SHADOWS_DEPTH GEOM_TYPE_BRANCH pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=455008 outsize=9898 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF GEOM_TYPE_BRANCH pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=455008 outsize=6 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF GEOM_TYPE_BRANCH pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=455008 outsize=9422 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF GEOM_TYPE_BRANCH pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=455008 outsize=6 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF GEOM_TYPE_BRANCH pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=291968 outsize=8543 kw=DIRECTIONAL GEOM_TYPE_BRANCH pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=291968 outsize=6 kw=DIRECTIONAL GEOM_TYPE_BRANCH pd= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=1215 outsize=1106 kw= pd= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=1215 outsize=6 kw= pd= ok=1
