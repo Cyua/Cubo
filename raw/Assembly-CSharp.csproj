@@ -50,6 +50,8 @@
      <Compile Include="Assets\scripts\Cursor.cs" />
      <Compile Include="Assets\scripts\SceneController.cs" />
      <Compile Include="Assets\scripts\SingleCube.cs" />
+     <Compile Include="Assets\scripts\TutorialBackground.cs" />
+     <Compile Include="Assets\scripts\TutorialController.cs" />
      <None Include="Assets\Resources\level2.txt" />
      <None Include="Assets\Resources\level1.txt" />
  <Reference Include="UnityEngine.Networking">

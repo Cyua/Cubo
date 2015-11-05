@@ -13,6 +13,10 @@ public class SceneController : MonoBehaviour {
 	
 	}
 
+	public void tutorial(){
+		Application.LoadLevel ("tutorial");
+	}
+
 	public void toSelectLevel(){
 		Application.LoadLevel("selectLevel");
 	}

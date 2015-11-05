@@ -2,11 +2,10 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class CubeController : MonoBehaviour {
+public class TutorialController : MonoBehaviour {
 	public GameObject instantiate;
 	public float rotate_speed;
 	public Texture2D[,] hintTex = new Texture2D[10, 3];
-	public Text remAttemptText;
 
 	private float rotate_vertical;			//rotate cubes
 	private float rotate_horizontal;		//rotate cubes
@@ -15,60 +14,39 @@ public class CubeController : MonoBehaviour {
 	private int[,,] shape;					//original shape of cubes
 	private int[,,] win;					//final shape of cubes, which win the game
 	private int[,] hintHW, hintHL, hintWL;	//hints
-	private int[,,] current;				//current axis
 	private GameObject cubes;				//cube model
 	private int l=0,w=0,h=0;				//length, width, height of the shape
 	private int mx=0,my=0,mz=0;				//center vector3 of the shape
 	private float px=0,py=0,pz=0;			//center vector3 of the Cubes
 
-	private bool isWin = false;				//judge if the game is win
-	private bool isLost = false;			//judge if the game is lost
-	private int remAttempt = 3;				//count the mistakes, if larger than 3, game lost
-	private string oriAttemptText;
-	public Rect windowRect1;
-	public Rect windowRect2;
 
-	/*****************************************/
-	//display the windows when win or lost
-	void OnGUI() {
-	 	windowRect1 = new Rect((float)Screen.width/2-150, 30, 300, 80);
-		windowRect2 = new Rect((float)Screen.width/2-150, 30, 300, 80);
-		if(isLost)
-			windowRect1 = GUI.Window(0, windowRect1, DoMyWindow, "You lost");
-		if(isWin)
-			windowRect2 = GUI.Window(1, windowRect2, DoMyWindow, "You Win");
+	private Rect penal;
+	private int stepCount=0;
+	private const int MAXSTEP = 10;
+	private string[] tutorialStep = new string[MAXSTEP];
+	void OnGUI(){
+		
+		//		GUIStyle background = new GUIStyle ();		//set the background image to fill the screen
+		//		background.normal.background = image;
+		//		GUI.Label (new Rect(0,0,Screen.width,Screen.height),"",background);
+		
+		penal = new Rect (0,0,Screen.width,Screen.height/4);
+		penal = GUI.Window (0,penal,giveTutorial,"Welcome to Tutorial");
+		
 	}
-	void DoMyWindow(int windowID) {
-
-		float buttonX1 = windowRect1.width / 10;								//button on the left
-		float buttonY1 = windowRect1.height / (float)2.5;
-		float buttonWidth = windowRect1.width / 3;
-		float buttonHeight = windowRect1.height / (float)2.5;
-
-		float buttonX2 = buttonX1 + buttonWidth + windowRect1.width / (float)6.5;		//button on the right
-
-
-
-		if (windowID == 0) {		//lost the game
-			if (GUI.Button (new Rect (buttonX1,buttonY1,buttonWidth,buttonHeight), "Back")) {
-				Application.LoadLevel("selectLevel");
-			}
-			if (GUI.Button (new Rect (buttonX2, buttonY1, buttonWidth, buttonHeight), "Replay")) {
-				Application.LoadLevel("level1");
-			}
-		} else if (windowID == 1) {
-			if (GUI.Button (new Rect (buttonX1, buttonY1, buttonWidth, buttonHeight), "Back")) {
-				Application.LoadLevel("selectLevel");
-			}
-			if (GUI.Button (new Rect (buttonX2, buttonY1, buttonWidth, buttonHeight), "Next")) {
-				Application.LoadLevel("level2");
+	void giveTutorial(int windowId){
+		if (windowId == 0) {
+			GUIStyle textFont = new GUIStyle ();
+			textFont.fontSize = 20;									//font size
+			textFont.normal.textColor = new Color (255, 255, 255);		//font color
+			
+			GUI.Label (new Rect (30, 30, penal.width - 60, penal.height - 60), tutorialStep [stepCount], textFont);		//set text area
+			if (GUI.Button (new Rect (penal.width - 80, penal.height - 40, 65, 30), "Next")) {
+				stepCount++;
+				if (stepCount >= MAXSTEP)
+					stepCount = MAXSTEP - 1;
 			}
 		}
-	}
-	/*****************************************/
-
-	public void resetCubes(){
-		transform.rotation = initial_rotation;
 	}
 
 	int returnMiddle(int x){
@@ -164,62 +142,9 @@ public class CubeController : MonoBehaviour {
 				hintWL [i, j] = int.Parse (second [j]);
 		}
 	}
-
-
-	void recvMessage(Vector3 o){			//receive message from the children
-		int x = (int)o.x;
-		int y = (int)o.y;
-		int z = (int)o.z;
-		int k = (int)(x+mx-px);
-		int i = (int)(h-my+py-y);
-		int j = (int)(z+mz-pz);
-
-		if (win [i, j, k]==1) {			//the cube is pressed false
-			GameObject [] childCube = GameObject.FindGameObjectsWithTag("cubeTag");
-			foreach(GameObject itemCube in childCube){
-				itemCube.SendMessage("waitJudge",false);
-			}
-			remAttempt--;
-			remAttemptText.text = oriAttemptText + remAttempt;	//update the Text
-			if(remAttempt<=0){			//just three opportunity!
-				isLost = true;			//lost the game!
-				isWin = false;
-				Debug.Log(false);	
-			}
-		} else {
-			GameObject [] childCube = GameObject.FindGameObjectsWithTag("cubeTag");
-			foreach(GameObject itemCube in childCube){
-				itemCube.SendMessage("waitJudge",true);
-			}
-			current [i, j, k] = 0;
-			if (compareArrays ()) {
-				isWin = true;
-				Debug.Log ("win");
-			}
-		}
-
-		if (isWin || isLost) {				//lock the cubes
-			GameObject [] childCube = GameObject.FindGameObjectsWithTag("cubeTag");
-			foreach(GameObject itemCube in childCube){
-				itemCube.SendMessage("lockCube",true);
-			}
-		}
-	}
-
-
-	bool compareArrays(){					//compare current and win, judge if the game is over
-		for (int i = 0; i < h; i++)
-			for (int j = 0; j < w; j++)
-				for (int k = 0; k < l; k++)
-					if(win[i, j, k] != current[i, j, k])
-						return false;
-		return true;
-	}
+	
 
 	void Start () {
-		//initial Text Area
-		oriAttemptText = remAttemptText.text;
-		remAttemptText.text = oriAttemptText + remAttempt;
 
 		// load textures;
 		for (int i = 0; i <= 9; i++)
@@ -228,7 +153,6 @@ public class CubeController : MonoBehaviour {
 
 		initial_rotation = transform.rotation;
 		readInput ("level1");
-		current = shape;
 		mx = returnMiddle (l)-1;  //calculate the middle point
 		my = returnMiddle (h);
 		mz = returnMiddle (w)-1;
@@ -255,11 +179,11 @@ public class CubeController : MonoBehaviour {
 
 	void Update () {
 		// Rotate the cube as mouse drags
-		if (Input.GetMouseButton (0) && !Input.GetKeyDown ("space")) {
-			rotate_vertical = Input.GetAxis ("Mouse Y");
-			rotate_horizontal = Input.GetAxis ("Mouse X");
-			transform.RotateAround (transform.position, Vector3.right, Time.deltaTime * rotate_speed * rotate_vertical);
-			transform.RotateAround (transform.position, Vector3.down, Time.deltaTime * rotate_speed * rotate_horizontal);
-		}
+//		if (Input.GetMouseButton (0) && !Input.GetKeyDown ("space")) {
+//			rotate_vertical = Input.GetAxis ("Mouse Y");
+//			rotate_horizontal = Input.GetAxis ("Mouse X");
+//			transform.RotateAround (transform.position, Vector3.right, Time.deltaTime * rotate_speed * rotate_vertical);
+//			transform.RotateAround (transform.position, Vector3.down, Time.deltaTime * rotate_speed * rotate_horizontal);
+//		}
 	}
 }
