@@ -25,34 +25,46 @@ public class CubeController : MonoBehaviour {
 	private bool isLost = false;			//judge if the game is lost
 	private int remAttempt = 3;				//count the mistakes, if larger than 3, game lost
 	private string oriAttemptText;
-	
+	public Rect windowRect1;
+	public Rect windowRect2;
 
 	/*****************************************/
 	//display the windows when win or lost
-	public Rect windowRect1 = new Rect((float)Screen.width/2-100, 20, 200, 50);
-	public Rect windowRect2 = new Rect((float)Screen.width/2-100, 20, 200, 50);
 	void OnGUI() {
+	 	windowRect1 = new Rect((float)Screen.width/2-150, 30, 300, 80);
+		windowRect2 = new Rect((float)Screen.width/2-150, 30, 300, 80);
 		if(isLost)
 			windowRect1 = GUI.Window(0, windowRect1, DoMyWindow, "You lost");
 		if(isWin)
 			windowRect2 = GUI.Window(1, windowRect2, DoMyWindow, "You Win");
 	}
 	void DoMyWindow(int windowID) {
-		Debug.Log (Screen.width/2);
+
+		float buttonX1 = windowRect1.width / 10;								//button on the left
+		float buttonY1 = windowRect1.height / (float)2.5;
+		float buttonWidth = windowRect1.width / 3;
+		float buttonHeight = windowRect1.height / (float)2.5;
+
+		float buttonX2 = buttonX1 + buttonWidth + windowRect1.width / (float)6.5;		//button on the right
+
+
+
 		if (windowID == 0) {		//lost the game
-			if (GUI.Button (new Rect (20, 25, 70, 20), "Back")) {
+			if (GUI.Button (new Rect (buttonX1,buttonY1,buttonWidth,buttonHeight), "Back")) {
 				Application.LoadLevel("selectLevel");
 				print ("Back");
 			}
-			if (GUI.Button (new Rect (110, 25, 70, 20), "Replay")) {
+			if (GUI.Button (new Rect (buttonX2, buttonY1, buttonWidth, buttonHeight), "Replay")) {
+				Application.LoadLevel("level1");
 				print ("Try again");
 			}
 		} else if (windowID == 1) {
-			if (GUI.Button (new Rect (20, 25, 70, 20), "Back")) {
+			if (GUI.Button (new Rect (buttonX1, buttonY1, buttonWidth, buttonHeight), "Back")) {
 				Application.LoadLevel("selectLevel");
 				print ("Back");
 			}
-			if (GUI.Button (new Rect (110, 25, 70, 20), "Next")) {
+			if (GUI.Button (new Rect (buttonX2, buttonY1, buttonWidth, buttonHeight), "Next")) {
+				Application.LoadLevel("level2");
 				print ("Next level");
 			}
 		}
