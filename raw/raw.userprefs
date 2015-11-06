@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/BackgroundAdjust.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/TutorialController.cs">
     <Files>
-      <File FileName="Assets/scripts/BackgroundAdjust.cs" Line="32" Column="4" />
-      <File FileName="Assets/scripts/CubeController.cs" Line="223" Column="3" />
-      <File FileName="Assets/scripts/TutorialController.cs" Line="45" Column="17" />
+      <File FileName="Assets/scripts/TutorialController.cs" Line="32" Column="35" />
+      <File FileName="Assets/scripts/CubeController.cs" Line="181" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

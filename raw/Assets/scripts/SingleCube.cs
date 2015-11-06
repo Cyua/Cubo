@@ -12,7 +12,7 @@ public class SingleCube : MonoBehaviour {
 
 	private int enlarge = 0;
 	private float resizeScale = 1.1f;
-
+	
 	private Texture2D texFB, texLR, texTB;
 
 	public GameObject front, back, left, right, top, bottom;
@@ -88,6 +88,7 @@ public class SingleCube : MonoBehaviour {
 				locked = true;
 				foreach (Renderer r in render)
 					r.material = mistakeMat;
+				ResetHint();
 				enlarge=1;
 			}
 			beJudged = false;
@@ -109,5 +110,57 @@ public class SingleCube : MonoBehaviour {
 			enlarge = 0;
 		} else
 			enlarge++;
+	}
+
+	//for tutorial Knock, don't change this
+	void tutorialKnock(int stepCount){
+		if (stepCount == 3) {
+			if ((transform.position.x == -2 || transform.position.x == 0 || 
+				transform.position.x == 2) && transform.position.y == 6) {
+				gameObject.SetActive (false);
+			}
+			if ((transform.position.x == -2 || transform.position.x == -1 || transform.position.x == 1 || 
+				transform.position.x == 2) && transform.position.y == 2) {
+				gameObject.SetActive (false);
+			}
+			if ((transform.position.x == -2 || transform.position.x == 2) && transform.position.y == 3) {
+				gameObject.SetActive (false);
+			}
+		} else if (stepCount == 6) {
+			if ((initialPos.x == 1 || initialPos.x == -1)
+				&& initialPos.y == 6 && (initialPos.z == -4 || initialPos.z == -2)) {
+				gameObject.SetActive (false);
+			}
+		} else if (stepCount == 7) {
+			if (initialPos.x == 1
+				&& initialPos.y == 6 && initialPos.z == -3) {
+				foreach (Renderer r in render)
+					r.material = mistakeMat;
+				ResetHint ();
+			}
+		} else if (stepCount == 8) {
+			if (initialPos.x == -1
+				&& initialPos.y == 6 && initialPos.z == -3) {
+				foreach (Renderer r in render)
+					r.material = newMat;
+				ResetHint ();
+			}
+		} else if (stepCount == 10) {
+			if ((initialPos.x == 2 || initialPos.x == -2)
+				&& (initialPos.y == 5 || initialPos.y == 4) && (initialPos.z == -4 || initialPos.z == -2)) {
+				gameObject.SetActive (false);
+			}
+			if ((initialPos.x == 1 || initialPos.x == -1)
+				&& initialPos.y == 3 && (initialPos.z == -4 || initialPos.z == -2)) {
+				gameObject.SetActive (false);
+			}
+			if (initialPos.x == -0
+				&& initialPos.y == 2 && (initialPos.z == -4 || initialPos.z == -2)) {
+				gameObject.SetActive (false);
+			}
+		} else if (stepCount == 11) {
+			foreach (Renderer r in render)
+				r.material = mistakeMat;
+		}
 	}
 }
