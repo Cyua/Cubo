@@ -21,6 +21,7 @@ public class SceneController : MonoBehaviour {
 		Application.LoadLevel("selectLevel");
 	}
 
+
 	public void Level1(){
 		Application.LoadLevel("level1");
 	}
@@ -45,21 +46,6 @@ public class SceneController : MonoBehaviour {
 		Application.LoadLevel("level6");
 	}
 
-	public void Level7(){
-		Application.LoadLevel("level7");
-	}
-	
-	public void Level8(){
-		Application.LoadLevel("level8");
-	}
-
-	public void Level9(){
-		Application.LoadLevel("level9");
-	}
-	
-	public void Level10(){
-		Application.LoadLevel("level10");
-	}
 
 	public void BackToMain(){
 		Application.LoadLevel("mainMenu");
