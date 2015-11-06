@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/TutorialController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/tutorial.txt">
     <Files>
+      <File FileName="Assets/Resources/tutorial.txt" Line="4" Column="8" />
       <File FileName="Assets/scripts/TutorialController.cs" Line="32" Column="35" />
-      <File FileName="Assets/scripts/CubeController.cs" Line="181" Column="5" />
+      <File FileName="Assets/scripts/CubeController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
