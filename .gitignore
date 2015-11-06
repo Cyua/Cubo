@@ -1,16 +1,11 @@
 # =============== #
 # Unity generated #
 # =============== #
-Temp/
-Obj/
-UnityGenerated/
-Library/
-Assets/AssetStoreTools*
-raw/Temp/
-raw/Obj/
-raw/UnityGenerated/
-raw/Library/
-raw/Assets/AssetStoreTools*
+/raw/Temp/*
+/raw/Obj/*
+/raw/UnityGenerated/*
+/raw/Library/*
+/raw/Assets/AssetStoreTools*
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
@@ -26,7 +21,6 @@ ExportedObj/
 *.unityproj
 *.booproj
 
-<<<<<<< HEAD
 # Unity3D generated meta files
 *.pidb.meta
 
@@ -36,7 +30,6 @@ sysinfo.txt
 *.sln
 
 raw/raw.sln
-=======
 # ============ #
 # OS generated #
 # ============ #
@@ -48,4 +41,4 @@ raw/raw.sln
 Icon?
 ehthumbs.db
 Thumbs.db
->>>>>>> origin/master
+*.log
