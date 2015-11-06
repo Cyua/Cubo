@@ -23,7 +23,6 @@ public class SingleCube : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Vector3 ini= new Vector3 ();
 		initialPos = transform.position;
 		render = new Renderer[6];
 		render[0] = front.GetComponent<Renderer> ();
@@ -74,10 +73,12 @@ public class SingleCube : MonoBehaviour {
 //			gameObject.SetActive (false);
 				beJudged = true;
 				GameObject.Find ("Cubes").SendMessage ("recvMessage", initialPos);
-			} else if (Input.GetKey ("space") && marked) {
-				enlarge = 1;
 			}
+			else if (Input.GetKey ("space") && marked)
+				enlarge = 1;
 		}
+		else if (Input.GetKey ("space"))
+			enlarge = 1;
 	}
 
 	void waitJudge(bool isLegal){

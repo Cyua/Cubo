@@ -15,7 +15,7 @@ Loading C:\Users\COCO\Desktop\Cubo\raw\build\cubo_Data\Managed\UnityEngine.UI.dl
 Platform assembly: C:\Users\COCO\Desktop\Cubo\raw\build\cubo_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\COCO\Desktop\Cubo\raw\build\cubo_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\COCO\Desktop\Cubo\raw\build\cubo_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.404 seconds
+- Completed reload, in  0.083 seconds
 <RI> Initializing input.
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
@@ -23,72 +23,4 @@ desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initialized touch support.
 Platform assembly: C:\Users\COCO\Desktop\Cubo\raw\build\cubo_Data\Managed\System.dll (this message is harmless)
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 2814 -> priority: 1 
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 8.583495 ms
-
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 212.
-Total: 0.334695 ms (FindLiveObjects: 0.037631 ms CreateObjectMapping: 0.025087 ms MarkObjects: 0.259432 ms  DeleteObjects: 0.011973 ms)
-
-(0.0, 4.0, -3.0)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-(0.0, 0.0, 0.0, 1.0)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.632715 ms
-
-Unloading 515 unused Assets to reduce memory usage. Loaded Objects now: 256.
-Total: 1.035447 ms (FindLiveObjects: 0.099211 ms CreateObjectMapping: 0.086097 ms MarkObjects: 0.554215 ms  DeleteObjects: 0.294783 ms)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.703032 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 322.
-Total: 0.793691 ms (FindLiveObjects: 0.042193 ms CreateObjectMapping: 0.031359 ms MarkObjects: 0.703032 ms  DeleteObjects: 0.016535 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.405494 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 295.
-Total: 0.421363 ms (FindLiveObjects: 0.027368 ms CreateObjectMapping: 0.021096 ms MarkObjects: 0.360924 ms  DeleteObjects: 0.010833 ms)
-
-False
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.637558 ms
-
-Unloading 537 unused Assets to reduce memory usage. Loaded Objects now: 323.
-Total: 0.789699 ms (FindLiveObjects: 0.068421 ms CreateObjectMapping: 0.050746 ms MarkObjects: 0.465267 ms  DeleteObjects: 0.204694 ms)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.986412 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 257.
-Total: 0.468688 ms (FindLiveObjects: 0.026228 ms CreateObjectMapping: 0.015394 ms MarkObjects: 0.411670 ms  DeleteObjects: 0.014824 ms)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.728690 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 247.
-Total: 0.408819 ms (FindLiveObjects: 0.029079 ms CreateObjectMapping: 0.020526 ms MarkObjects: 0.344388 ms  DeleteObjects: 0.013114 ms)
-
-(0.0, 4.0, -3.0)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-(0.0, 0.0, 0.0, 1.0)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.946025 ms
-
-Unloading 515 unused Assets to reduce memory usage. Loaded Objects now: 257.
-Total: 0.716716 ms (FindLiveObjects: 0.084956 ms CreateObjectMapping: 0.051316 ms MarkObjects: 0.384301 ms  DeleteObjects: 0.195571 ms)
-
+  Thread -> id: 1ec0 -> priority: 1 

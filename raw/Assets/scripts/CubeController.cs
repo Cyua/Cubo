@@ -11,7 +11,6 @@ public class CubeController : MonoBehaviour {
 	private float rotate_vertical;			//rotate cubes
 	private float rotate_horizontal;		//rotate cubes
 	private Quaternion initial_rotation;	//record the initial rotation
-	private ArrayList rawInput = new ArrayList();
 	private int[,,] shape;					//original shape of cubes
 	private int[,,] win;					//final shape of cubes, which win the game
 	private int[,] hintHW, hintHL, hintWL;	//hints
@@ -227,7 +226,7 @@ public class CubeController : MonoBehaviour {
 				hintTex[i, j] = LoadTex(i, j);
 
 		initial_rotation = transform.rotation;
-		readInput ("level1");
+		readInput ("level2");
 		current = shape;
 		mx = returnMiddle (l)-1;  //calculate the middle point
 		my = returnMiddle (h);
