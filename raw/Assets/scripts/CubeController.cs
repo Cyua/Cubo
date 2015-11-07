@@ -7,6 +7,10 @@ public class CubeController : MonoBehaviour {
 	public float rotate_speed;
 	public Texture2D[,] hintTex = new Texture2D[10, 3];
 	public Text remAttemptText;
+	public Texture winNPC;
+	public Texture winNPCMirror;
+	public Texture loseNPC;
+	public Texture loseNPCMirror;
 
 	private float rotate_vertical;			//rotate cubes
 	private float rotate_horizontal;		//rotate cubes
@@ -33,10 +37,16 @@ public class CubeController : MonoBehaviour {
 	void OnGUI() {
 	 	windowRect1 = new Rect((float)Screen.width/2-150, 30, 300, 80);
 		windowRect2 = new Rect((float)Screen.width/2-150, 30, 300, 80);
-		if(isLost)
-			windowRect1 = GUI.Window(0, windowRect1, DoMyWindow, "You lost");
-		if(isWin)
-			windowRect2 = GUI.Window(1, windowRect2, DoMyWindow, "You Win");
+		if (isLost) {
+			GUI.DrawTexture (new Rect ((float)Screen.width / 2 - 350, 240, 120, 300), loseNPC, ScaleMode.ScaleToFit);
+			GUI.DrawTexture (new Rect ((float)Screen.width / 2 + 245, 240, 120, 300), loseNPCMirror, ScaleMode.ScaleToFit);
+			windowRect1 = GUI.Window (0, windowRect1, DoMyWindow, "You lost");
+		}
+		if (isWin) {
+			GUI.DrawTexture (new Rect ((float)Screen.width / 2 - 350, 240, 120, 300), winNPC, ScaleMode.ScaleToFit);
+			GUI.DrawTexture (new Rect ((float)Screen.width / 2 + 245, 240, 120, 300), winNPCMirror, ScaleMode.ScaleToFit);
+			windowRect2 = GUI.Window (1, windowRect2, DoMyWindow, "You Win");
+		}
 	}
 	void DoMyWindow(int windowID) {
 

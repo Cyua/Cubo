@@ -1,10 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\AudioManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/CubeController.cs">
     <Files>
-      <File FileName="Assets\scripts\AudioController.cs" Line="38" Column="3" />
-      <File FileName="Assets\scripts\SceneController.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\AudioManager.cs" Line="16" Column="36" />
+      <File FileName="Assets/scripts/SceneController.cs" Line="61" Column="1" />
+      <File FileName="Assets/scripts/TutorialController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/CubeRotate.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/CubeController.cs" Line="42" Column="60" />
+      <File FileName="Assets/scripts/Cursor.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
