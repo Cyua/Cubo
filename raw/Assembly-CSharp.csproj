@@ -45,6 +45,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\scripts\AudioController.cs" />
+     <Compile Include="Assets\scripts\AudioManager.cs" />
      <Compile Include="Assets\scripts\CameraController.cs" />
      <Compile Include="Assets\scripts\CubeController.cs" />
      <Compile Include="Assets\scripts\Cursor.cs" />
@@ -58,17 +60,11 @@
      <None Include="Assets\Resources\level4.txt" />
      <None Include="Assets\Resources\level2.txt" />
      <None Include="Assets\Resources\level1.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>D:/Unity3D/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity3D/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>D:/Unity3D/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Unity3D/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>D:/Unity3D/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
