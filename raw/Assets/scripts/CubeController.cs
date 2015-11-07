@@ -27,6 +27,7 @@ public class CubeController : MonoBehaviour {
 	public Rect windowRect1;
 	public Rect windowRect2;
 
+	private string levelNum=0;				//determine load which level	
 	/*****************************************/
 	//display the windows when win or lost
 	void OnGUI() {
@@ -164,7 +165,7 @@ public class CubeController : MonoBehaviour {
 		}
 	}
 
-
+	/*********************   handle the messages   **********************/
 	void recvMessage(Vector3 o){			//receive message from the children
 		int x = (int)o.x;
 		int y = (int)o.y;
@@ -205,7 +206,7 @@ public class CubeController : MonoBehaviour {
 		}
 	}
 
-
+	/**/
 	bool compareArrays(){					//compare current and win, judge if the game is over
 		for (int i = 0; i < h; i++)
 			for (int j = 0; j < w; j++)
