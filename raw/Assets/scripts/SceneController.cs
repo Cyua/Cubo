@@ -21,12 +21,9 @@ public class SceneController : MonoBehaviour {
 		Application.LoadLevel("selectLevel");
 	}
 
-<<<<<<< HEAD
 	public void setting(){
 		Application.LoadLevel("setting");
 	}
-=======
->>>>>>> 53c1f178d17787e8290b357e3c59cb589749691f
 
 	public void Level1(){
 		Application.LoadLevel("level1");

@@ -27,7 +27,7 @@ public class CubeController : MonoBehaviour {
 	public Rect windowRect1;
 	public Rect windowRect2;
 
-	private string levelNum=0;				//determine load which level	
+	private string levelNum="0";				//determine load which level	
 	/*****************************************/
 	//display the windows when win or lost
 	void OnGUI() {
