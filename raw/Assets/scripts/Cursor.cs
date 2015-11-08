@@ -23,6 +23,10 @@ public class Cursor : MonoBehaviour {
 		}
 	}
 
+	void OnDestroy(){
+		UnityEngine.Cursor.visible = true;
+	}
+
 	void OnGUI()
 	{
 		if (isClick) {
