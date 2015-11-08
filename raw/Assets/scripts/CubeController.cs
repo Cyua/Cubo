@@ -39,13 +39,13 @@ public class CubeController : MonoBehaviour {
 	 	windowRect1 = new Rect((float)Screen.width/2-150, 30, 300, 80);
 		windowRect2 = new Rect((float)Screen.width/2-150, 30, 300, 80);
 		if (isLost) {
-			GUI.DrawTexture (new Rect ((float)Screen.width / 2 - 350, 240, 120, 300), loseNPC, ScaleMode.ScaleToFit);
-			GUI.DrawTexture (new Rect ((float)Screen.width / 2 + 245, 240, 120, 300), loseNPCMirror, ScaleMode.ScaleToFit);
+			GUI.DrawTexture (new Rect (50, 240, 120, 300), loseNPC, ScaleMode.ScaleToFit);
+			GUI.DrawTexture (new Rect (Screen.width -170, 240, 120, 300), loseNPCMirror, ScaleMode.ScaleToFit);
 			windowRect1 = GUI.Window (0, windowRect1, DoMyWindow, "You lost");
 		}
 		if (isWin) {
-			GUI.DrawTexture (new Rect ((float)Screen.width / 2 - 350, 240, 120, 300), winNPC, ScaleMode.ScaleToFit);
-			GUI.DrawTexture (new Rect ((float)Screen.width / 2 + 245, 240, 120, 300), winNPCMirror, ScaleMode.ScaleToFit);
+			GUI.DrawTexture (new Rect (50, 240, 120, 300), winNPC, ScaleMode.ScaleToFit);
+			GUI.DrawTexture (new Rect (Screen.width -170, 240, 120, 300), winNPCMirror, ScaleMode.ScaleToFit);
 			windowRect2 = GUI.Window (1, windowRect2, DoMyWindow, "You Win");
 		}
 	}
