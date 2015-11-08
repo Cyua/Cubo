@@ -15,10 +15,6 @@ public class AudioManager : MonoBehaviour {
 		slider.value = Mathf.MoveTowards (slider.value, audioMgr.volume, (float)1.0);
 		toggle.isOn = audioMgr.isPlaying;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
 	public void changeVoice(){
 		audioMgr.volume = slider.value;

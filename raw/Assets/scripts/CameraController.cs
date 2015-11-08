@@ -10,7 +10,6 @@ public class CameraController : MonoBehaviour {
 	public void resetCamera(){
 		transform.Translate(initial_position-transform.position,Space.World);
 	}
-	
 	void Start() {
 		initial_position = transform.position;
 	}

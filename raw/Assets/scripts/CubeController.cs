@@ -8,10 +8,16 @@ public class CubeController : MonoBehaviour {
 	public Texture2D[,] hintTex = new Texture2D[10, 3];
 	public Text remAttemptText;
 	public Text currentLevelText;
-	public Texture winNPC;
+	public Texture winNPC;					//NPC images
 	public Texture winNPCMirror;
 	public Texture loseNPC;
 	public Texture loseNPCMirror;
+	//audio control
+	public AudioClip lostMusic;
+	public AudioClip winMusic;
+	private AudioSource audioCtrl;
+	private bool hasPlayed=false;
+
 
 	private float rotate_vertical;			//rotate cubes
 	private float rotate_horizontal;		//rotate cubes
@@ -42,11 +48,21 @@ public class CubeController : MonoBehaviour {
 			GUI.DrawTexture (new Rect (50, 240, 120, 300), loseNPC, ScaleMode.ScaleToFit);
 			GUI.DrawTexture (new Rect (Screen.width -170, 240, 120, 300), loseNPCMirror, ScaleMode.ScaleToFit);
 			windowRect1 = GUI.Window (0, windowRect1, DoMyWindow, "You lost");
+			if(hasPlayed==false){	//the audio has not been played, then play it
+				audioCtrl.clip = lostMusic;
+				audioCtrl.Play ();
+				hasPlayed=true;
+			}
 		}
 		if (isWin) {
 			GUI.DrawTexture (new Rect (50, 240, 120, 300), winNPC, ScaleMode.ScaleToFit);
 			GUI.DrawTexture (new Rect (Screen.width -170, 240, 120, 300), winNPCMirror, ScaleMode.ScaleToFit);
 			windowRect2 = GUI.Window (1, windowRect2, DoMyWindow, "You Win");
+			if(hasPlayed==false){	//the audio has not been played, then play it
+				audioCtrl.clip = winMusic;
+				audioCtrl.Play ();
+				hasPlayed=true;
+			}
 		}
 	}
 	void DoMyWindow(int windowID) {
@@ -233,6 +249,7 @@ public class CubeController : MonoBehaviour {
 
 	void Start () {
 		//initial Text Area
+		audioCtrl = this.GetComponent<AudioSource> ();
 		oriAttemptText = remAttemptText.text;
 		remAttemptText.text = oriAttemptText + remAttempt;
 
@@ -275,6 +292,7 @@ public class CubeController : MonoBehaviour {
 
 	void Update () {
 		// Rotate the cube as mouse drags
+
 		if (Input.GetMouseButton (0) && !Input.GetKeyDown ("space")) {
 			rotate_vertical = Input.GetAxis ("Mouse Y");
 			rotate_horizontal = Input.GetAxis ("Mouse X");

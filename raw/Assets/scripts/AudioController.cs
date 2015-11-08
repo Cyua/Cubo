@@ -12,7 +12,7 @@ public class AudioController : MonoBehaviour {
 	private static AudioController instance = null;
 	// Use this for initialization
 	void Start () {
-		audioMgr = FindObjectOfType (typeof(AudioSource)) as AudioSource;
+		audioMgr = this.GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -44,8 +44,7 @@ public class AudioController : MonoBehaviour {
 			return instance;
 		}
 	}
-	
-	
+
 	void Awake()
 	{
 		if (instance != null && instance != this)

@@ -16,13 +16,20 @@ public class SingleCube : MonoBehaviour {
 	private Texture2D texFB, texLR, texTB;
 
 	public GameObject front, back, left, right, top, bottom;
-	
+
+	//materia
 	public Material originalMat;
 	public Material newMat;
 	public Material mistakeMat;
 
+	//audio
+	public AudioClip breakMusic;
+	public AudioClip wrongMusic;
+	private AudioSource audioCtrl;
+
 	// Use this for initialization
 	void Start () {
+		audioCtrl = GameObject.Find ("Cubes").GetComponent<AudioSource> ();		//find the audio source
 		initialPos = transform.position;
 		render = new Renderer[6];
 		render[0] = front.GetComponent<Renderer> ();
@@ -70,26 +77,33 @@ public class SingleCube : MonoBehaviour {
 				ResetHint ();
 			} else if (Input.GetKey ("space") && !marked) {
 				knocked = true;
-//			gameObject.SetActive (false);
 				beJudged = true;
 				GameObject.Find ("Cubes").SendMessage ("recvMessage", initialPos);
-			}
-			else if (Input.GetKey ("space") && marked)
+			} else if (Input.GetKey ("space") && marked){
+				audioCtrl.clip=wrongMusic;			//set audio (wrong)
+				audioCtrl.Play();
 				enlarge = 1;
-		}
-		else if (Input.GetKey ("space"))
+			}
+		} else if (Input.GetKey ("space")) {
+			audioCtrl.clip=wrongMusic;			//set audio (wrong)
+			audioCtrl.Play();
 			enlarge = 1;
+		}
 	}
 
 	void waitJudge(bool isLegal){
 		if (beJudged) {
 			if(isLegal){
+				audioCtrl.clip=breakMusic;			//set audio (break the stone)
+				audioCtrl.Play();
 				gameObject.SetActive(false);
 			} else {
 				locked = true;
 				foreach (Renderer r in render)
 					r.material = mistakeMat;
 				ResetHint();
+				audioCtrl.clip=wrongMusic;			//set audio (break the stone)
+				audioCtrl.Play();
 				enlarge=1;
 			}
 			beJudged = false;

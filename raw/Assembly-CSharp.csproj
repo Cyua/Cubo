@@ -56,10 +56,10 @@
      <Compile Include="Assets\scripts\TutorialController.cs" />
      <None Include="Assets\Resources\level6.txt" />
      <None Include="Assets\Resources\tutorial.txt" />
-     <None Include="Assets\Resources\level5.txt" />
      <None Include="Assets\Resources\level1.txt" />
      <None Include="Assets\Resources\level3.txt" />
      <None Include="Assets\Resources\level4.txt" />
+     <None Include="Assets\Resources\level5.txt" />
      <None Include="Assets\Resources\level2.txt" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
