@@ -7,6 +7,7 @@ public class CubeController : MonoBehaviour {
 	public float rotate_speed;
 	public Texture2D[,] hintTex = new Texture2D[10, 3];
 	public Text remAttemptText;
+	public Text currentLevelText;
 	public Texture winNPC;
 	public Texture winNPCMirror;
 	public Texture loseNPC;
@@ -31,7 +32,7 @@ public class CubeController : MonoBehaviour {
 	public Rect windowRect1;
 	public Rect windowRect2;
 
-	private string levelNum="0";				//determine load which level	
+	private int levelNum=0;				//determine load which level	
 	/*****************************************/
 	//display the windows when win or lost
 	void OnGUI() {
@@ -64,14 +65,18 @@ public class CubeController : MonoBehaviour {
 				Application.LoadLevel("selectLevel");
 			}
 			if (GUI.Button (new Rect (buttonX2, buttonY1, buttonWidth, buttonHeight), "Replay")) {
-				Application.LoadLevel("level1");
+				Application.LoadLevel("level");
 			}
 		} else if (windowID == 1) {
 			if (GUI.Button (new Rect (buttonX1, buttonY1, buttonWidth, buttonHeight), "Back")) {
 				Application.LoadLevel("selectLevel");
 			}
 			if (GUI.Button (new Rect (buttonX2, buttonY1, buttonWidth, buttonHeight), "Next")) {
-				Application.LoadLevel("level2");
+				levelNum++;
+				if(levelNum>6)
+					levelNum=1;
+				PlayerPrefs.SetInt("level",levelNum);
+				Application.LoadLevel("level");
 			}
 		}
 	}
@@ -215,8 +220,8 @@ public class CubeController : MonoBehaviour {
 			}
 		}
 	}
+	/*****************************************/
 
-	/**/
 	bool compareArrays(){					//compare current and win, judge if the game is over
 		for (int i = 0; i < h; i++)
 			for (int j = 0; j < w; j++)
@@ -237,7 +242,12 @@ public class CubeController : MonoBehaviour {
 				hintTex[i, j] = LoadTex(i, j);
 
 		initial_rotation = transform.rotation;
-		readInput ("level2");
+		levelNum = PlayerPrefs.GetInt ("level");
+
+		string levelStr = "level" + levelNum;
+		currentLevelText.text += levelNum;
+
+		readInput (levelStr);
 		current = shape;
 		mx = returnMiddle (l)-1;  //calculate the middle point
 		my = returnMiddle (h);

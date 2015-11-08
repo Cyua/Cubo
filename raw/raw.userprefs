@@ -1,12 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/CubeController.cs">
     <Files>
-      <File FileName="Assets/scripts/SceneController.cs" Line="61" Column="1" />
+      <File FileName="Assets/scripts/CubeController.cs" Line="76" Column="19" />
+      <File FileName="Assets/scripts/SceneController.cs" Line="50" Column="34" />
       <File FileName="Assets/scripts/TutorialController.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/CubeRotate.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/CubeController.cs" Line="42" Column="60" />
-      <File FileName="Assets/scripts/Cursor.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/SingleCube.cs" Line="75" Column="71" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

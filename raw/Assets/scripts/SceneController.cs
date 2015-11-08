@@ -26,27 +26,33 @@ public class SceneController : MonoBehaviour {
 	}
 
 	public void Level1(){
-		Application.LoadLevel("level1");
+		PlayerPrefs.SetInt ("level",1);
+		Application.LoadLevel("level");
 	}
 
 	public void Level2(){
-		Application.LoadLevel("level2");
+		PlayerPrefs.SetInt ("level",2);
+		Application.LoadLevel("level");
 	}
 
 	public void Level3(){
-		Application.LoadLevel("level3");
+		PlayerPrefs.SetInt ("level",3);
+		Application.LoadLevel("level");
 	}
 	
 	public void Level4(){
-		Application.LoadLevel("level4");
+		PlayerPrefs.SetInt ("level",4);
+		Application.LoadLevel("level");
 	}
 
 	public void Level5(){
-		Application.LoadLevel("level5");
+		PlayerPrefs.SetInt ("level",5);
+		Application.LoadLevel("level");
 	}
 	
 	public void Level6(){
-		Application.LoadLevel("level6");
+		PlayerPrefs.SetInt ("level",6);
+		Application.LoadLevel("level");
 	}
 
 
