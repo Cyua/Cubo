@@ -80,7 +80,7 @@ public class CubeController : MonoBehaviour {
 			if (GUI.Button (new Rect (buttonX1,buttonY1,buttonWidth,buttonHeight), "Back")) {
 				Application.LoadLevel("selectLevel");
 			}
-			if (GUI.Button (new Rect (buttonX2, buttonY1, buttonWidth, buttonHeight), "Replay")) {
+			if (GUI.Button (new Rect (buttonX2, buttonY1, buttonWidth, buttonHeight), "Retry")) {
 				Application.LoadLevel("level");
 			}
 		} else if (windowID == 1) {
