@@ -34,15 +34,15 @@ public class CubeRotate : MonoBehaviour {
 			finalOffset = Input.mousePosition - StartPosition;
 			angle = finalOffset.magnitude;
 		}
-
+		
 		if (angle > 0)
 		{
 			angle -= 5;
-			transform.Rotate (Vector3.down * 5.0f * Time.deltaTime * angle);
+			transform.RotateAround (transform.position, Vector3.down, Time.deltaTime * 60f * angle);
 		}
 		else
 		{
-			transform.Rotate (Vector3.down * 5.0f * Time.deltaTime);
+			transform.RotateAround (transform.position, Vector3.up, Time.deltaTime * 120f);
 		}
 	}
 }
